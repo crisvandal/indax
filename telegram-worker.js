@@ -11,7 +11,7 @@ export default {
     };
     if (request.method === "OPTIONS") return new Response(null, { headers });
     try {
-      const res = await fetch(`https://t.me/s/crisvandal`, {
+      const res = await fetch(`https://t.me/s/${CHANNEL}`, {
         headers: { "User-Agent": "Mozilla/5.0" },
         cf: { cacheTtl: 300, cacheEverything: true },
       });
@@ -45,7 +45,7 @@ function parse(html) {
       null;
     if (!text && !image) continue;
     const date = (chunk.match(/<time[^>]*datetime="([^"]+)"/) || [])[1] || null;
-    out.push({ id, url: `https://t.me/crisvandal{id}`, text, date, image });
+    out.push({ id, url: `https://t.me/${CHANNEL}/${id}`, text, date, image });
   }
   return out;
 }
