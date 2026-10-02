@@ -22,7 +22,7 @@ a:focus-visible{outline:2px solid var(--paper);outline-offset:4px}
 .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,transparent 0,rgba(0,0,0,.55) 60%,#000 100%)}
 .hero>*:not(.blinds){position:relative;z-index:2}
 @keyframes sweep{to{clip-path:inset(0)}}
-.mark{width:min(88vw,620px);height:auto;mix-blend-mode:screen}
+.mark{font-size:clamp(3rem,13vw,8rem);font-weight:800;letter-spacing:-.08em;line-height:.85;mix-blend-mode:screen}
 .sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .sub{margin:.25rem 0 0;color:var(--ash)}
 .cta{display:inline-block;margin-top:1.75rem;padding:.9rem 1.6rem;border:1px solid var(--paper);background:var(--paper);color:#000;font-weight:600;text-decoration:none;transition:background .2s,color .2s}
@@ -52,7 +52,7 @@ footer{padding:2rem 1.25rem 3rem;border-top:1px solid var(--line);color:var(--as
 <header class="hero">
 <div class="blinds" aria-hidden="true"></div>
 <h1 class="sr">Cris Vandal</h1>
-<img class="mark" src="logo.webp" alt="Cris Vandal" width="640" height="640">
+<div class="mark" aria-label="Cris Vandal">CRIS VANDAL</div>
 <p class="sub">Хип-хоп. Тёмный свет, жёсткий ритм.</p>
 <a class="cta" href="https://open.spotify.com/artist/3lTEF7QXEyJuCA2uGytIK2" target="_blank" rel="noopener">Слушать на Spotify</a>
 </header>
