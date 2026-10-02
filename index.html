@@ -43,8 +43,7 @@ p{margin:0 auto;max-width:40ch;color:var(--ash)}
 footer{padding:2rem 1.25rem 3rem;border-top:1px solid var(--line);color:var(--ash);font-size:.9rem}
 @media (prefers-reduced-motion:reduce){.blinds{animation:none;clip-path:none}}
 
-.music-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.5rem;text-align:left}.music-card{min-width:0;text-decoration:none}.music-card img{display:block;width:100%;aspect-ratio:1;object-fit:cover;filter:none}.music-name{margin-top:.65rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.music-meta{color:var(--ash);font-size:.8rem}.track-list{margin-top:1.5rem;text-align:left}.track-row{display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:.8rem;padding:.65rem 0;border-top:1px solid var(--line);text-decoration:none}.track-row img{width:52px;height:52px;object-fit:cover}.track-row small{display:block;color:var(--ash)}.track-arrow{color:var(--ash)}.music-note{color:var(--ash);margin-top:1rem;font-size:.85rem}@media(max-width:700px){.music-grid{grid-template-columns:repeat(2,1fr)}}
-.music-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.5rem;text-align:left}.music-card{min-width:0;text-decoration:none}.music-card img{display:block;width:100%;aspect-ratio:1;object-fit:cover}.music-name{margin-top:.65rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.music-meta{color:var(--ash);font-size:.8rem}.track-list{margin-top:1.5rem;text-align:left}.track-row{display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:.8rem;padding:.65rem 0;border-top:1px solid var(--line);text-decoration:none}.track-row img{width:52px;height:52px;object-fit:cover}.track-row small{display:block;color:var(--ash)}.track-arrow{color:var(--ash)}.music-note{color:var(--ash);margin-top:1rem;font-size:.85rem}@media(max-width:700px){.music-grid{grid-template-columns:repeat(2,1fr)}}
+.latest .release-card{display:grid;grid-template-columns:minmax(0,18rem) 1fr;gap:2rem;align-items:center;text-align:left;max-width:40rem;margin:0 auto}.release-cover{display:block;width:100%;aspect-ratio:1;object-fit:cover}.release-info h3{margin:.25rem 0 1rem;font-size:clamp(1.6rem,5vw,2.5rem);line-height:1.05}.release-label{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em}.player iframe{display:block;border:0;border-radius:12px;margin:1.5rem auto 0}.player{max-width:44rem}@media(max-width:700px){.latest .release-card{grid-template-columns:1fr;text-align:center;max-width:22rem}.release-info .cta{margin-top:1rem}}
 </style>
 </head>
 <body>
@@ -57,16 +56,20 @@ footer{padding:2rem 1.25rem 3rem;border-top:1px solid var(--line);color:var(--as
 <a class="cta" href="https://open.spotify.com/artist/3lTEF7QXEyJuCA2uGytIK2" target="_blank" rel="noopener">Слушать на Spotify</a>
 </header>
 <main>
-<section id="music">
-<a href="https://open.spotify.com/artist/3lTEF7QXEyJuCA2uGytIK2" target="_blank" rel="noopener" aria-label="Слушать на Spotify"><img class="cover" src="logo.webp" alt="Обложка релиза Cris Vandal" width="800" height="800" loading="lazy"></a>
+<section class="latest" id="music">
+<h2>Последний релиз</h2>
+<div class="release-card">
+  <img class="release-cover" src="cover.webp" alt="Я летал и я падал..." width="800" height="800" loading="lazy">
+  <div class="release-info">
+    <p class="release-label">Cris Vandal · 2026</p>
+    <h3>Я летал и я падал...</h3>
+    <a class="cta" href="https://open.spotify.com/search/%D0%AF%20%D0%BB%D0%B5%D1%82%D0%B0%D0%BB%20%D0%B8%20%D1%8F%20%D0%BF%D0%B0%D0%B4%D0%B0%D0%BB%20Cris%20Vandal" target="_blank" rel="noopener">Слушать релиз</a>
+  </div>
+</div>
 </section>
-
-<section class="music" id="music">
-<h2>Музыка</h2>
-<p>Последние релизы и популярные треки из Spotify.</p>
-<div class="music-grid" id="releases" aria-live="polite"></div>
-<div class="track-list" id="tracksList" aria-live="polite"></div>
-<a class="cta" href="https://open.spotify.com/artist/3lTEF7QXEyJuCA2uGytIK2" target="_blank" rel="noopener">Открыть Spotify</a>
+<section class="player" id="player">
+<h2>Spotify</h2>
+<iframe title="Cris Vandal в Spotify" src="https://open.spotify.com/embed/artist/3lTEF7QXEyJuCA2uGytIK2?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 </section>
 <section class="tg" id="telegram">
 <h2>Telegram</h2>
@@ -80,16 +83,6 @@ footer{padding:2rem 1.25rem 3rem;border-top:1px solid var(--line);color:var(--as
 </main>
 <footer>© Cris Vandal</footer>
 
-<script>
-const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-const loadJSON=async p=>{const c=new AbortController(),t=setTimeout(()=>c.abort(),5000);try{const r=await fetch(p,{cache:"no-store",signal:c.signal});if(!r.ok)throw Error();return await r.json()}finally{clearTimeout(t)}};
-(async()=>{try{const d=await loadJSON("spotify.json"),r=document.getElementById("releases"),l=document.getElementById("tracksList");r.innerHTML=(d.releases||[]).slice(0,8).map(x=>'<a class="music-card" href="'+esc(x.url)+'" target="_blank" rel="noopener"><img src="'+esc(x.image||"")+'" alt="'+esc(x.name)+'" loading="lazy" decoding="async"><div class="music-name">'+esc(x.name)+'</div><div class="music-meta">'+esc(x.type==="single"?"Сингл":"Релиз")+' · '+esc(x.release_date||"")+'</div></a>').join("")||'<div class="music-note">Spotify ещё не синхронизирован.</div>';l.innerHTML=(d.top_tracks||[]).slice(0,10).map((x,i)=>'<a class="track-row" href="'+esc(x.url)+'" target="_blank" rel="noopener"><img src="'+esc(x.image||"")+'" alt="" loading="lazy" width="52" height="52"><div><strong>'+String(i+1)+". "+esc(x.name)+'</strong><small>'+esc(x.album)+'</small></div><span class="track-arrow">↗</span></a>').join("")}catch(e){document.getElementById("releases").innerHTML='<div class="music-note">Данные Spotify временно недоступны. <a href="https://open.spotify.com/artist/3lTEF7QXEyJuCA2uGytIK2" target="_blank" rel="noopener">Открыть Spotify →</a></div>'}})();
-</script>
-<script>
-const esc=s=>String(s??'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
-const loadJSON=async p=>{const c=new AbortController(),t=setTimeout(()=>c.abort(),5000);try{const r=await fetch(p,{cache:"no-store",signal:c.signal});if(!r.ok)throw Error();return await r.json()}finally{clearTimeout(t)}};
-(async()=>{try{const d=await loadJSON("spotify.json"),r=document.getElementById("releases"),l=document.getElementById("tracksList");r.innerHTML=(d.releases||[]).slice(0,8).map(x=>'<a class="music-card" href="'+esc(x.url)+'" target="_blank" rel="noopener"><img src="'+esc(x.image||"")+'" alt="'+esc(x.name)+'" loading="lazy" decoding="async"><div class="music-name">'+esc(x.name)+'</div><div class="music-meta">'+esc(x.type==="single"?"Сингл":"Релиз")+' · '+esc(x.release_date||"")+'</div></a>').join("")||'<div class="music-note">Spotify ещё не синхронизирован.</div>';l.innerHTML=(d.top_tracks||[]).slice(0,10).map((x,i)=>'<a class="track-row" href="'+esc(x.url)+'" target="_blank" rel="noopener"><img src="'+esc(x.image||"")+'" alt="" loading="lazy" width="52" height="52"><div><strong>'+String(i+1)+". "+esc(x.name)+'</strong><small>'+esc(x.album)+'</small></div><span class="track-arrow">↗</span></a>').join("")}catch(e){document.getElementById("releases").innerHTML='<div class="music-note">Spotify временно недоступен. <a href="https://open.spotify.com/artist/3lTEF7QXEyJuCA2uGytIK2" target="_blank" rel="noopener">Открыть Spotify →</a></div>'}})();
-</script>
 <script>
 // Лента берётся из файла tg.json рядом с этой страницей
 const TG_API = "tg.json";
