@@ -1,0 +1,35 @@
+name: Sync Telegram feed
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # каждые 30 минут
+  workflow_dispatch:          # ручной запуск из вкладки Actions
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Fetch posts
+        run: python scripts/tg_sync.py
+      - name: Commit changes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "tg-sync"
+          git config user.email "tg-sync@users.noreply.github.com"
+          git add -A tg.json tg
+          if git diff --cached --quiet; then
+            echo "Без изменений"
+          else
+            git commit -m "Update Telegram feed"
+            git push
+            gh api -X POST "repos/$GITHUB_REPOSITORY/pages/builds" || true
+          fi
