@@ -1,6 +1,13 @@
 {
   "posts": [
     {
+      "id": "269",
+      "url": "https://t.me/crisvandal/269",
+      "text": "Все ссылки в одном удобном месте",
+      "date": "2026-10-02T14:10:44+00:00",
+      "image": "tg/269.jpg"
+    },
+    {
       "id": "268",
       "url": "https://t.me/crisvandal/268",
       "text": "",
@@ -13,13 +20,6 @@
       "text": "https://band.link/letalpadal",
       "date": "2026-09-04T08:10:51+00:00",
       "image": "tg/266.jpg"
-    },
-    {
-      "id": "265",
-      "url": "https://t.me/crisvandal/265",
-      "text": "Мы сегодня проснулись в мире где hdd жесткие диски стоят от 10000₽",
-      "date": "2026-09-02T09:21:52+00:00",
-      "image": "tg/265.jpg"
     }
   ]
 }
